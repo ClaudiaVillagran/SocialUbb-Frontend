@@ -182,8 +182,12 @@ body {
 .container{
     background-color: #35363A;
 }
+
 .container:hover{
     background-color: #0040b0;
+}
+.container_comments{
+    margin-bottom: 20px;
 }
 .content__login{
     margin-top: 4.5rem;
