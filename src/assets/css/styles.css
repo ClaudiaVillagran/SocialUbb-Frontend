@@ -6,7 +6,8 @@
     --color-hover-navbar: #0040b0;
 
     --color-border-headers: #757070;
-
+    --color-background-btn-seeMore: #18191A;
+    --color-border-btn-seeMore: #35363A;
     --color-background-btn-success: #0040b0;
     --color-border-btn-success: #062b6b;
     --color-background-btn-success-hover: #0040b0;
@@ -188,6 +189,7 @@ body {
 }
 .container_comments{
     margin-bottom: 20px;
+    
 }
 .content__login{
     margin-top: 4.5rem;
@@ -238,10 +240,18 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 2rem;
     border-radius: 0.4rem;
     border: 1px solid var(--color-border-post);
-    padding: 1.5rem;
+    margin-top: 20px;
+}
+.posts__post_comment{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* border-radius: 0.4rem;
+    border: 1px solid var(--color-border-post); */
+
 }
 
 
@@ -249,13 +259,22 @@ body {
     display: flex;
     flex-direction: row;
 }
-
+.post_comment__image-user{
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 4.5rem;
+    height: 5.5rem;
+    border-radius: 100rem;
+    margin-right: 1.5rem;
+    overflow: hidden;
+}
 .post__image-user{
     width: 7.5rem;
     height: 7.5rem;
     border-radius: 100rem;
     margin-right: 1.5rem;
     overflow: hidden;
+    margin: 10px;
 }
 
 .post__user-image{
@@ -281,7 +300,6 @@ body {
     font-size: 1.8rem;
     font-weight: 500;
 }
-
 .post__buttons{
     display: flex;
     align-items: center;
@@ -322,6 +340,11 @@ body {
     display: flex;
     justify-content: center;
 }
+.content__container_comment-btn{
+    width: 100%;
+    display: flex;
+    padding: 10px;
+}
 
 .content__btn-more-post{
     background-color: var(--color-background-btn-success);
@@ -334,6 +357,28 @@ body {
     cursor: pointer;
     font-size: 1.4rem;
 }
+
+.content__comment_btn-more-post{
+    background-color: var(--color-background-btn-seeMore);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border-btn-seeMore);
+    border-radius: 0.3rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+.content__comment_btn-more-post:hover{
+    background-color: var(--color-background-btn-success);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border-btn-success);
+    border-radius: 0.3rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
 
 /*ESTILOS BARRA LATERAL*/
 .layout__aside{
@@ -438,6 +483,10 @@ body {
 .container-form__form-post{
     width: 100%;
 }
+.container-form__form-comment{
+    display: flex;
+    align-items: center;
+}
 
 form{
     max-width: 400px;
@@ -527,4 +576,14 @@ button{
 .config-form{
     background-color: #35363A ;
     padding: 2rem;
+}
+.inputComment{
+    background-color: transparent;
+    margin-top: 10px;
+    color: transparent;
+    margin-right: 10px;
+}
+.publication_img{
+    width: 300px;
+    padding-bottom: 20px;
 }

@@ -24,7 +24,6 @@ export const PublicationList = ({ publications, getPublications, page, setPage, 
             }
         });
         const data = await request.json();
-        console.log(data)
         setPage(1);
         setMore(true);
         getPublications(1, true);
@@ -34,41 +33,46 @@ export const PublicationList = ({ publications, getPublications, page, setPage, 
             <div className="content__posts">
                 {publications.map(publication => {
                     return (
+                        <div className="container_post" key={publication._id}>
+                            <div className="container" >
+                                <article className="posts__post" >
+                                    <div className="post__container">
 
-                        <div className="container" key={publication._id}>
-                            <article className="posts__post" >
-                                <div className="post__container">
-
-                                    <div className="post__image-user">
-                                        <a href="#" className="post__image-link">
-                                            {publication.student.image != 'default.png' && <img src={Global.url + 'student/profilePicture/' + publication.student.image} alt="Foto de perfil" />}
-                                            {publication.student.image == 'default.png' && <img src={avatar} className="container-avatar__img" alt="Foto de perfil" />}
-                                        </a>
-                                    </div>
-
-                                    <div className="post__body">
-                                        <div className="post__user-info">
-                                            <a href="#" className="user-info__name">{publication.student.name}</a>
-                                            <span className="user-info__divider"> | </span>
-                                            <a href="#" className="user-info__create-date"><ReactTimeAgo date={publication.created_at} locale="es-ES" /></a>
+                                        <div className="post__image-user">
+                                            <a href="#" className="post__image-link">
+                                                {publication.student.image != 'default.png' && <img src={Global.url + 'student/profilePicture/' + publication.student.image} alt="Foto de perfil" />}
+                                                {publication.student.image == 'default.png' && <img src={avatar} className="container-avatar__img" alt="Foto de perfil" />}
+                                            </a>
                                         </div>
 
-                                        <h4 className="post__content">{publication.text}</h4>
-                                        {publication.file && <img src={Global.url + 'publiction/media/' + publication.file} />}
+                                        <div className="post__body">
+                                            <div className="post__user-info">
+                                                <a href="#" className="user-info__name">{publication.student.name}</a>
+                                                <span className="user-info__divider"> | </span>
+                                                <a href="#" className="user-info__create-date"><ReactTimeAgo date={publication.created_at} locale="es-ES" /></a>
+                                            </div>
+
+                                            <h4 className="post__content">{publication.text}</h4>
+                                            {publication.image && 
+                                            <div className="publication_img">
+                                                <img src={Global.url + 'publication/media/' + publication.image} />
+                                            </div>}
+                                        </div>
+
                                     </div>
 
-                                </div>
+                                    {auth._id == publication.student._id &&
+                                        <div className="post__buttons">
 
-                                {auth._id == publication.student._id &&
-                                    <div className="post__buttons">
+                                            <button className="post__button" onClick={() => deletePublication(publication._id)}>
+                                                <i className="fa-solid fa-trash-can"></i>
+                                            </button>
 
-                                        <button className="post__button" onClick={() => deletePublication(publication._id)}>
-                                            <i className="fa-solid fa-trash-can"></i>
-                                        </button>
+                                        </div>
+                                    }
+                                </article>
 
-                                    </div>
-                                }
-                            </article>
+                            </div>
                             <div className="container_comments">
                                 <FeedComments publicationId={publication._id} />
                             </div>

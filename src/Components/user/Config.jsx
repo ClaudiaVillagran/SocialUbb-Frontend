@@ -39,6 +39,7 @@ export const Config = () => {
         //subida de imagen
         const fileInput = document.querySelector('#upload');
         console.log(fileInput)
+        console.log(fileInput.files[0])
         if (data.status == 'success' && fileInput.files[0]) {
             console.log('hola2')    
             const formData = new FormData();

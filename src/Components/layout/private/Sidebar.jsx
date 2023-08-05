@@ -5,6 +5,7 @@ import avatar from '../../../assets/img/user.png';
 import { Link } from 'react-router-dom';
 import { useForm } from '../../../hooks/useForm';
 import { useState } from 'react';
+import { SerializeForm } from "../../../helpers/SerializeForm";
 
 export const Sidebar = () => {
     const { auth, count } = useAuth();
@@ -13,42 +14,39 @@ export const Sidebar = () => {
 
     const savePublication = async (e) => {
         e.preventDefault();
-        //RECORGER DATOS DEL FORMULARIO
+        // //RECORGER DATOS DEL FORMULARIO
         let newPublication = form;
         newPublication.student = auth._id;
-        //HACER REQUEST PARA GUARDAR EN BD
+        // //HACER REQUEST PARA GUARDAR EN BD
         const request = await fetch(Global.url + 'publication/save', {
             method: 'POST',
             body: JSON.stringify(newPublication),
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': localStorage.getItem('token')
-            }
+               'Content-Type': 'application/json',
+               'Authorization': localStorage.getItem('token')
+           }
         });
         const data = await request.json();
-        //MOSTRAR MENSAJE DE EXITO O ERROR 
+        // //MOSTRAR MENSAJE DE EXITO O ERROR 
         if (data.status == 'success') {
-            setStored('stored')
-            const myForm = document.querySelector('#publication-form');
-            myForm.reset();
+           setStored('stored')
+            // const myForm = document.querySelector('#publication-form');
+            // myForm.reset();
 
         } else {
             setStored('error')
         }
         //SUBIR IMAGEN
-        const fileInput = document.querySelector('#upload')
-
-        console.log(fileInput.files[0])
-        console.log(data)
+        const fileInput = document.querySelector('#image')
         if (data.status == 'success' && fileInput.files[0]) {
-            console.log('hola')
-            const formData= new FormData();
+            const formData = new FormData();
             formData.append('upload0', fileInput.files[0]);
-
-            const uploadRequest = await fetch(Global.url + 'publication/upload/'+data.publicationStored._id,{
+            console.log(data.publication._id)
+            console.log(formData);
+            const uploadRequest = await fetch(Global.url + 'publication/upload/' + data.publication._id, {
                 method: 'POST',
                 body: formData,
-                headers:{
+                headers: {
                     'Authorization': localStorage.getItem('token')
                 }
             });
@@ -57,7 +55,7 @@ export const Sidebar = () => {
             if (uploadData.status == 'success') {
                 setStored('stored')
 
-            }else{
+            } else {
                 setStored('error')
             }
         }
@@ -83,7 +81,7 @@ export const Sidebar = () => {
 
                         <div className="general-info__container-names">
                             <div className="container-names__name">
-                                <Link to={'/social/profile/'+auth._id} className="container-names__name_a" >{auth.name}</Link>
+                                <Link to={'/social/profile/' + auth._id} className="container-names__name_a" >{auth.name}</Link>
                                 {/* <p className="container-names__nickname">MysticKali</p> */}
                             </div>
 
@@ -107,7 +105,7 @@ export const Sidebar = () => {
 
 
                         <div className="stats__following">
-                            <Link to={'/social/profile/'+auth._id} className="following__link">
+                            <Link to={'/social/profile/' + auth._id} className="following__link">
                                 <span className="following__title">Publicaciones</span>
                                 <span className="following__number">{count.publicationsCount}</span>
                             </Link>
@@ -125,27 +123,30 @@ export const Sidebar = () => {
                     {stored === 'error' ?
                         <strong className="alert alert-danger">Error al realizar la publicación!</strong>
                         : ""}
+
                     <form id='publication-form' className="container-form__form-post" onSubmit={savePublication}>
 
                         <div className="form-post__inputs">
                             <label htmlFor="text" className="form-post__label">¿Que estas pesando hoy?</label>
                             <textarea name="text" className="form-post__textarea" onChange={changed} />
                             <label htmlFor="text" className="form-post__label">Escribe tus #hastags</label>
-                            <textarea name="text" className="form-post__textarea" onChange={changed} placeholder='#ciencia #computacion...'/>
-                        </div>
-                        <div className="form-post__inputs">
-                            <label htmlFor="image" className="form-post__label">Sube foto</label>
-                            <input type="file" name="upload0" id='upload' className="form-post__image" />
-
+                            <textarea name="text" className="form-post__textarea" onChange={changed} placeholder='#ciencia #computacion...' />
                         </div>
 
-                        <input type="submit" value="Enviar" className="form-post__btn-submit"  />
+                        <div className="form-group">
+                            <label htmlFor="image">Avatar</label>
+                            <input type="file" name="upload0" id="image" />
+                        </div>
+
+                        <input type="submit" value="Enviar" className="form-post__btn-submit" />
 
                     </form>
 
                 </div>
 
             </div>
+
+
 
         </aside>
 
