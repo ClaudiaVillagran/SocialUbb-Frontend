@@ -17,7 +17,9 @@ export const Sidebar = () => {
         // //RECORGER DATOS DEL FORMULARIO
         let newPublication = form;
         newPublication.student = auth._id;
+        
         // //HACER REQUEST PARA GUARDAR EN BD
+        console.log(newPublication)
         const request = await fetch(Global.url + 'publication/save', {
             method: 'POST',
             body: JSON.stringify(newPublication),
@@ -130,7 +132,7 @@ export const Sidebar = () => {
                             <label htmlFor="text" className="form-post__label">¿Que estas pesando hoy?</label>
                             <textarea name="text" className="form-post__textarea" onChange={changed} />
                             <label htmlFor="text" className="form-post__label">Escribe tus #hastags</label>
-                            <textarea name="text" className="form-post__textarea" onChange={changed} placeholder='#ciencia #computacion...' />
+                            <textarea name="categories" className="form-post__textarea" onChange={changed} placeholder='#ciencia #computacion...' />
                         </div>
 
                         <div className="form-group">
