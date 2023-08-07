@@ -15,15 +15,38 @@ El proyecto "SOCIALUBB" es una aplicación web que corre sobre el siguiente soft
 -MongoAtlas
 -NPM
 
+# **DOCKER**
+
+Con una terminal situarse dentro del directorio raiz del proyecto, para esto se debe estar en el mismo directorio donde se hizo el clon del proyecto (branch main) y ejecutar el siguiente comando:
+
+```
+cd SocialUbb-Frontend
+```
+
+Para construir la imagen docker del fronted, se debe ejecutar el siguiente comando desde la carpeta raiz del proyecto:
+
+```
+docker build -t socialubb-frontend . 
+```
+
+Una vez creado el contenedor de docker, se debe ejecutar el siguiente comando para correr el contenedor:
+
+```
+docker run --rm -ti -p 80:80 -v ${pwd}:/home socialubb-frontend
+```
+**pwd: es la ruta del directorio raiz del backend, asi que es importante ejecutar el comando desde la carpeta SocialUbb-Backend como se especifica.**
+
+Luego se debe acceder a la carpeta del proyecto, para esto se debe ejecutar los siguientes comando:
+
+```
+cd SocialUbb-Frontend
+npm install
+np run dev
+```
+
 Clonación del repositorio
 
 Para obtener una copia del proyecto se debe clonar el repositorio de GitHub, para esto se debe ejecutar el siguiente comando en la terminal:
-
-PARA CLONAR REPOSITORIO DE BACKEND
-
-```
-git clone https://github.com/ClaudiaVillagran/SocialUbb-Backend.git
-```
 
 PARA CLONAR REPOSITORIO DE FRONTEND
 
@@ -32,8 +55,6 @@ git clone https://github.com/ClaudiaVillagran/SocialUbb-Frontend.git
 ```
 
 Variables de entorno
-
-Se debe generar un archivo .env en la carpeta frontend y backend respectivamente, el cual debe contener las siguientes variables de entorno:
 
 FRONTEND:
 
