@@ -39,7 +39,7 @@ docker run --rm -ti -p 80:80 -v ${pwd}:/home socialubb-frontend
 Luego se debe acceder a la carpeta del proyecto, para esto se debe ejecutar los siguientes comando:
 
 ```
-cd SocialUbb-Frontend
+cd home
 npm install
 np run dev
 ```
