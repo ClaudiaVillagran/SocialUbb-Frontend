@@ -3,8 +3,8 @@ import useAuth from '../../hooks/useAuth'
 import ReactTimeAgo from 'react-time-ago'
 
 import avatar from '../../assets/img/user.png'
-import { CommentPublication } from "../comment/CommentPublication";
 import { FeedComments } from "../comment/FeedComments";
+import { LikesPublication } from "../like/LikesPublication";
 
 export const PublicationList = ({ publications, getPublications, page, setPage, more, setMore }) => {
     const { auth } = useAuth();
@@ -70,8 +70,12 @@ export const PublicationList = ({ publications, getPublications, page, setPage, 
 
                                         </div>
                                     }
+                                    
                                 </article>
 
+                            </div>
+                            <div className="container_likes">
+                                <LikesPublication publicationId={publication._id}/>
                             </div>
                             <div className="container_comments">
                                 <FeedComments publicationId={publication._id} />

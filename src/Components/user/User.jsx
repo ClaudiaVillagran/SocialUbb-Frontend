@@ -16,7 +16,7 @@ export const User = () => {
   }, []);
 
   const getStudents = async (nextPage = 1) => {
-    setLoading(true)
+    setLoading(true)  
     //peticion para sacar estudiantes
     const request = await fetch(Global.url + 'student/list/'+nextPage, {
       method: 'GET',
@@ -28,7 +28,7 @@ export const User = () => {
     const data = await request.json();
     //crear un estado para poder listarlos
     if (data.students && data.status == 'success') {
-      // console.log('data.students',data.students);
+      //console.log('data.students',data);
       let newStudents =  data.students;
       // console.log(data.students.length)
        if (students.length >=1) {
