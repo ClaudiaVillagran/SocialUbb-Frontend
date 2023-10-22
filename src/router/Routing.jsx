@@ -4,7 +4,7 @@ import { Login } from '../Components/user/Login';
 import { Register } from '../Components/user/Register';
 import { PrivateLayout } from '../Components/layout/private/PrivateLayout';
 import { Feed } from '../Components/publication/Feed';
-import { AuthProvider } from '../context/AuthProvider';
+import { AuthProvider } from '../Context/AuthProvider';
 import { Logout } from '../Components/user/Logout';
 import { User } from '../Components/user/User';
 import { Config } from '../Components/user/Config';

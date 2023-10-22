@@ -9,11 +9,12 @@ export const LikesPublication = (publicationId) => {
     const token = localStorage.getItem('token');
     const { auth } = useAuth();
     const [likes, setLikes] = useState([]);
-    const [likeStudent, setLikeStudent] = useState([]);
+    const [likeStudent, setLikeStudent] = useState({});
     const [page, setPage] = useState(1);
     const [countLike, setCountLike] = useState(1);
     const [more, setMore] = useState(true);
     const [stored, setStored] = useState('not_stored');
+    const [change, setChange] = useState('not_change');
 
     useEffect(() => {
         getLikes(1,false);
@@ -78,10 +79,38 @@ export const LikesPublication = (publicationId) => {
         const data = await request.json();
         if (data.status == 'success') {
             setStored('saved')
-            //agregar likes  nuevos con setlikes
         }
     };
-
+    const verPersonas = async (nextPage = 1, showNews = false) => {
+        if (showNews) {
+            setLikes([]);
+            setPage(1);
+            nextPage = 1;
+        }
+        const request = await fetch (Global.url + 'publication/publicationWithLike/'+publicationId.publicationId,{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            }
+        });
+        const data = await request.json();
+        console.log(data);
+        if (data.status == 'success') {
+            let studentsLike = data.publication.likes
+            if (!showNews && likeStudent.length >= 1) {
+                studentsLike = [...likeStudent, ...studentsLike]
+            }
+            setLikeStudent(studentsLike)
+            if (!showNews && likes.length >= (data.total - likeStudent.length)) {
+                setMore(false);
+            }
+            if (data.totalPages <= 1) {
+                setMore(false)
+            }
+            setChange('change');
+        }
+    };
     return (
         <>
 
@@ -106,10 +135,20 @@ export const LikesPublication = (publicationId) => {
             })
 
             }
-            <h1>le gusta a {countLike} persona</h1>
+            <h1>le gusta a {countLike} personas</h1>
             {countLike>0 &&
                 
-            <button>ver personas</button>
+            <button onClick={()=>verPersonas(publicationId)}>ver personas</button>
+            }
+            {change=='change' &&
+                likeStudent.map(student=>{
+                    return (
+                        <div className="likes_student" key={student.student}>
+                            <h1>{student.student}</h1>
+                        </div>
+    
+                    )
+                })
             }
         </>
     )

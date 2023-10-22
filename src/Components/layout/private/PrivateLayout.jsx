@@ -14,7 +14,7 @@ export const PrivateLayout = () => {
 
           {/* cabecera */}
           <Header/>
-
+          <Sidebar/>
           {/* contenido principal */}
           <section className="layout__content">
             {auth._id ?
@@ -26,7 +26,7 @@ export const PrivateLayout = () => {
           </section>
 
           {/* barra lateral */}
-          <Sidebar/>
+         
       </>
     )
   }

@@ -45,7 +45,7 @@ export const Feed = () => {
                 setMore(false)
             }
         }
-    }
+}    
     return (
         <>
             <header className="content__header">
