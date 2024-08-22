@@ -1,15 +1,15 @@
 import { Dialog } from '@rneui/themed';
-import { Pressable, StyleSheet, Text, TextInput, View, Alert, Platform } from "react-native";
+import { Pressable, StyleSheet, Text, TextInput, View, Alert,Platform } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from 'react';
 import { Input } from '@rneui/themed';
 
 // Import DatePicker for web
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+// import DatePicker from 'react-datepicker';
+// import 'react-datepicker/dist/react-datepicker.css';
 
 // Import DateTimePicker for native
-import DateTimePicker from '@react-native-community/datetimepicker';
+// import DateTimePicker from '@react-native-community/datetimepicker';
 import { InputImage } from '../components/inputs/InputImage';
 import { saveProject } from '../features/projectSlice';
 import { uploadProjectFile } from '../utils/uploadProjectFile';
@@ -51,7 +51,7 @@ const ModalPub = ({ openModal, setOpenModal, setNewPost }) => {
 
 
 
-        dispatch(saveProject({ title, description, date, place, file: fileProject.length > 0 ? uploadedFiles : [], token }));
+        dispatch(saveProject({ title, description, place, file: fileProject.length > 0 ? uploadedFiles : [], token }));
         setOpenModal(false);
 
         setNewPost((prev) => !prev);
@@ -69,12 +69,12 @@ const ModalPub = ({ openModal, setOpenModal, setNewPost }) => {
 
     };
 
-    const onDateChange = (event, selectedDate) => {
-        const currentDate = selectedDate || date;
-        setShowDatePicker(Platform.OS === 'ios');
-        setDate(currentDate);
-        setDateSelected(true);
-    };
+    // const onDateChange = (event, selectedDate) => {
+    //     const currentDate = selectedDate || date;
+    //     setShowDatePicker(Platform.OS === 'ios');
+    //     setDate(currentDate);
+    //     setDateSelected(true);
+    // };
 
 
     return (
@@ -116,7 +116,7 @@ const ModalPub = ({ openModal, setOpenModal, setNewPost }) => {
                         errorMessage={description.length <= 3 ? 'Ingrese una descripción por favor' : ''}
                         multiline={true}
                     />
-                    {Platform.OS === 'web' ? (
+                    {/* {Platform.OS === 'web' ? (
                         <DatePicker
                             selected={dateSelected ? date : null}
                             onChange={(date) => {
@@ -154,7 +154,7 @@ const ModalPub = ({ openModal, setOpenModal, setNewPost }) => {
                                 />
                             )}
                         </>
-                    )}
+                    )} */}
 
                     <View>
 

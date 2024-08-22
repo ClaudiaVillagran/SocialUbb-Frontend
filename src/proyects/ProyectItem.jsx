@@ -154,7 +154,7 @@ const ProyectItem = ({ project, socket }) => {
                         <Text style={styles.text}>{project.description}</Text>
 
                         <Text style={styles.place}><IoLocationSharp />{project.place}</Text>
-                        <Text style={styles.materialsTitle}><IoCalendarSharp />{` ${formatedDate(project.date)}`}</Text>
+                        {/* <Text style={styles.materialsTitle}><IoCalendarSharp />{` ${formatedDate(project.date)}`}</Text> */}
                         {project.file.length > 0 &&
                             <View style={styles.containerImage}>
                                 <Image source={{ uri: (project.file[0].file.url) }} style={styles.image} />
