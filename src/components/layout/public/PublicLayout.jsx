@@ -21,7 +21,7 @@ const PublicLayout = () => {
     return (
         <View style={styles.container}>
             <ImageBackground
-                source={require('../../../assets/img/BackgroundLogin.png')} // Reemplaza 'path_to_your_image.jpg' con la ruta de tu imagen
+                source={require('../../../../assets/img/BackgroundLogin.png')} // Reemplaza 'path_to_your_image.jpg' con la ruta de tu imagen
                 style={styles.background}
             >
                 <View style={styles.containerLogin}>
